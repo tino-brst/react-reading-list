@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { BooksContext } from './contexts/BooksContext';
 import { Book } from './models/Book';
+import { Navbar } from './components/Navbar';
 
 export const App = () => {
   const [books, setBooks] = useState([
@@ -19,6 +20,7 @@ export const App = () => {
   return (
     <div className="App">
       <BooksContext.Provider value={[books, addBook, removeBook]}>
+        <Navbar />
       </BooksContext.Provider>
     </div>
   );
