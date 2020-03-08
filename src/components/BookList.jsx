@@ -3,7 +3,7 @@ import { BooksContext } from '../contexts/BooksContext';
 import { BookListTile } from './BookListTile';
 
 export const BookList = () => {
-  const [books, _, removeBook] = useContext(BooksContext);
+  const { books, removeBook } = useContext(BooksContext);
 
   return (
     <div className="BookList">

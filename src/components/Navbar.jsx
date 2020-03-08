@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BooksContext } from '../contexts/BooksContext';
 
 export const Navbar = () => {
-  const [books] = useContext(BooksContext);
+  const { books } = useContext(BooksContext);
 
   return (
     <nav className="Navbar">

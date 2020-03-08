@@ -20,7 +20,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      <BooksContext.Provider value={[books, addBook, removeBook]}>
+      <BooksContext.Provider value={{ books, addBook, removeBook }}>
         <Navbar />
         <BookList />
       </BooksContext.Provider>
