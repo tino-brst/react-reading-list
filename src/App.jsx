@@ -4,8 +4,12 @@ import { BooksContext } from './contexts/BooksContext';
 import { Book } from './models/Book';
 import { Navbar } from './components/Navbar';
 import { BookList } from './components/BookList';
+import { ThemeContext } from './contexts/ThemeContext';
+import { Theme } from './constants';
 
 export const App = () => {
+  const [theme, setTheme] = useState(Theme.light);
+
   const [books, setBooks] = useState([
     new Book('Foundation', 'Isaac Asimov', uuid()),
     new Book('The Martian', 'Andy Weir', uuid()),
@@ -19,11 +23,13 @@ export const App = () => {
   }
 
   return (
-    <div className="App">
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <BooksContext.Provider value={{ books, addBook, removeBook }}>
-        <Navbar />
-        <BookList />
+        <div className="App">
+          <Navbar />
+          <BookList />
+        </div>
       </BooksContext.Provider>
-    </div>
+    </ThemeContext.Provider>
   );
 }
