@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { BooksContext } from '../contexts/BooksContext';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { BooksContext, ThemeContext } from '../contexts';
 import { ThemeSelect } from './ThemeSelect';
 import { NewBookForm } from './NewBookForm';
 

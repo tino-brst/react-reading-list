@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { BooksContext } from './contexts/BooksContext';
-import { Book } from './models/Book';
-import { Navbar } from './components/Navbar';
-import { BookList } from './components/BookList';
-import { ThemeContext } from './contexts/ThemeContext';
+import { Book } from './models';
 import { Theme } from './constants';
+import { BooksContext, ThemeContext } from './contexts';
+import { Navbar, BookList } from './components';
 
 export const App = () => {
   const [theme, setTheme] = useState(Theme.light);

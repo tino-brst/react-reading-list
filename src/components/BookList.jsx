@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BooksContext } from '../contexts/BooksContext';
+import { BooksContext } from '../contexts';
 import { BookListTile } from './BookListTile';
 
 export const BookList = () => {
