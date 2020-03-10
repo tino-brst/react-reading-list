@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Book } from './models';
 import { Theme } from './constants';
 import { BooksContext, ThemeContext } from './contexts';
 import { Navbar, BookList } from './components';
+import { booksReducer } from './reducers';
 
 export const App = () => {
   const [theme, setTheme] = useState(Theme.light);
 
-  const [books, setBooks] = useState([
+  const [books, dispatch] = useReducer(booksReducer, [
     new Book('Foundation', 'Isaac Asimov', uuid()),
     new Book('The Martian', 'Andy Weir', uuid()),
   ]);
 
-  const addBook = (title, author) => {
-    setBooks([...books, new Book(title, author, uuid())]);
-  }
-  const removeBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <BooksContext.Provider value={{ books, addBook, removeBook }}>
+      <BooksContext.Provider value={{ books, dispatch }}>
         <div className="App">
           <Navbar />
           <BookList />

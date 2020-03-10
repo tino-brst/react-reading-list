@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
 import { BooksContext } from '../contexts';
 import { BookListTile } from './BookListTile';
+import { BooksActionCreator } from '../actions';
 
 export const BookList = () => {
-  const { books, removeBook } = useContext(BooksContext);
+  const { books, dispatch } = useContext(BooksContext);
+
+  const removeBook = (id) => {
+    dispatch(BooksActionCreator.remove(id))
+  }
 
   return (
     <div className="BookList">
