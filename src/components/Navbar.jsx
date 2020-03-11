@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { BooksContext, ThemeContext } from '../contexts';
+import { BooksContext, useTheme } from '../contexts';
 import { ThemeSelect } from './ThemeSelect';
 import { NewBookForm } from './NewBookForm';
 
 export const Navbar = () => {
   const { books } = useContext(BooksContext);
-  const { theme, setTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useTheme();
 
   return (
     <nav className="Navbar">

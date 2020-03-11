@@ -1,11 +1,10 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { Theme, LocalStorageItemKey } from './constants';
-import { BooksContext, ThemeContext } from './contexts';
+import React, { useReducer, useEffect } from 'react';
+import { LocalStorageItemKey } from './constants';
+import { BooksContext } from './contexts';
 import { Navbar, BookList } from './components';
 import { booksReducer } from './reducers';
 
 export const App = () => {
-  const [theme, setTheme] = useState(Theme.light);
   const [books, dispatch] = useReducer(booksReducer, [], booksInitializer);
 
   useEffect(() => {
@@ -13,14 +12,12 @@ export const App = () => {
   }, [books])
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <BooksContext.Provider value={{ books, dispatch }}>
-        <div className="App">
-          <Navbar />
-          <BookList />
-        </div>
-      </BooksContext.Provider>
-    </ThemeContext.Provider>
+    <BooksContext.Provider value={{ books, dispatch }}>
+      <div className="App">
+        <Navbar />
+        <BookList />
+      </div>
+    </BooksContext.Provider>
   );
 }
 
