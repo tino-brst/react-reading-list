@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { useBooks } from '../contexts';
 import { BooksActionCreator } from '../actions';
 
-export const NewBookForm = () => {
+export function NewBookForm() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
   const [, dispatch] = useBooks();
 
-  const addBook = (title, author) => {
+  function addBook(title, author) {
     dispatch(BooksActionCreator.add(title, author));
   }
 
-  const clearFields = () => {
+  function clearFields() {
     setTitle('');
     setAuthor('');
   }
 
-  const onSubmit = (event) => {
+  function onSubmit(event) {
     event.preventDefault();
     addBook(title, author);
     clearFields();

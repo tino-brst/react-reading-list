@@ -6,12 +6,12 @@ import { getItemFromLocalStorage, saveItemToLocalStorage } from '../utils/local-
 const BooksContext = createContext();
 BooksContext.displayName = 'BooksContext';
 
-const booksInitializer = (initialValue) => {
+function booksInitializer(initialValue) {
   const storedBooks = getItemFromLocalStorage(LocalStorageItemKey.books);
   return storedBooks === null ? initialValue : storedBooks;
 };
 
-const BooksProvider = ({ children }) => {
+function BooksProvider({ children }) {
   const [books, dispatch] = useReducer(booksReducer, [], booksInitializer);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const BooksProvider = ({ children }) => {
   )
 }
 
-const useBooks = () => {
+function useBooks() {
   const context = useContext(BooksContext);
   if (context === undefined) {
     throw new Error('useBooks must be used within a BooksProvider')

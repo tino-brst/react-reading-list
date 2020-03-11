@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const BookListTile = ({ book, onClick }) => {
+export function BookListTile({ book, onClick }) {
   return (
     <li
       className="BookListTile"

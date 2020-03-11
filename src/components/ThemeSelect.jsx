@@ -1,7 +1,7 @@
 import React from 'react';
 import { Theme } from '../constants';
 
-export const ThemeSelect = ({ value, onChange }) => {
+export function ThemeSelect({ value, onChange }) {
   return (
     <select
       className="ThemeSelect"

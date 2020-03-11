@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { BooksActionType } from '../actions'
 import { Book } from '../models'
 
-export const booksReducer = (books, action) => {
+export function booksReducer(books, action) {
   switch (action.type) {
     case BooksActionType.add:
       const { title, author } = action.payload;

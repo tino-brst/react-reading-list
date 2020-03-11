@@ -4,7 +4,7 @@ import { Theme } from '../constants'
 const ThemeContext = createContext();
 ThemeContext.displayName = 'ThemeContext';
 
-const ThemeProvider = ({ children, initialValue = Theme.light }) => {
+function ThemeProvider({ children, initialValue = Theme.light }) {
   const [theme, setTheme] = useState(initialValue);
 
   return (
@@ -14,7 +14,7 @@ const ThemeProvider = ({ children, initialValue = Theme.light }) => {
   )
 }
 
-const useTheme = () => {
+function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider')

@@ -5,10 +5,10 @@ import { BooksActionCreator } from '../actions';
 
 // TODO add an empty state
 
-export const BookList = () => {
+export function BookList() {
   const [books, dispatch] = useBooks();
 
-  const removeBook = (id) => {
+  function removeBook(id) {
     dispatch(BooksActionCreator.remove(id))
   }
 

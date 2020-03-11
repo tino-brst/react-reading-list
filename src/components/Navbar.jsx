@@ -3,7 +3,7 @@ import { useBooks, useTheme } from '../contexts';
 import { ThemeSelect } from './ThemeSelect';
 import { NewBookForm } from './NewBookForm';
 
-export const Navbar = () => {
+export function Navbar() {
   const [books] = useBooks();
   const [theme, setTheme] = useTheme();
 
