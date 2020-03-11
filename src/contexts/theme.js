@@ -24,5 +24,5 @@ const useTheme = () => {
 
 export {
   ThemeProvider,
-  useTheme,
+  useTheme
 };

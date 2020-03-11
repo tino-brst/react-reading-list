@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useEffect, useContext } from 'react';
 import { LocalStorageItemKey } from '../constants'
 import { booksReducer } from '../reducers'
+import { getItemFromLocalStorage, saveItemToLocalStorage } from '../utils/local-storage'
 
 const BooksContext = createContext();
 BooksContext.displayName = 'BooksContext';
@@ -30,16 +31,6 @@ const useBooks = () => {
     throw new Error('useBooks must be used within a BooksProvider')
   }
   return context;
-}
-
-// TODO move to utils file
-
-const getItemFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key));
-}
-
-const saveItemToLocalStorage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value))
 }
 
 export {
