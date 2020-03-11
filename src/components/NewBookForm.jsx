@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
-import { BooksContext } from '../contexts';
+import React, { useState } from 'react';
+import { useBooks } from '../contexts';
 import { BooksActionCreator } from '../actions';
 
 export const NewBookForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
-  const { dispatch } = useContext(BooksContext);
+  const [, dispatch] = useBooks();
 
   const addBook = (title, author) => {
     dispatch(BooksActionCreator.add(title, author));

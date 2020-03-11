@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { BooksContext } from '../contexts';
+import React from 'react';
+import { useBooks } from '../contexts';
 import { BookListTile } from './BookListTile';
 import { BooksActionCreator } from '../actions';
 
 // TODO add an empty state
 
 export const BookList = () => {
-  const { books, dispatch } = useContext(BooksContext);
+  const [books, dispatch] = useBooks();
 
   const removeBook = (id) => {
     dispatch(BooksActionCreator.remove(id))

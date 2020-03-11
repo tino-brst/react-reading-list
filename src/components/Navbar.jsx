@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { BooksContext, useTheme } from '../contexts';
+import React from 'react';
+import { useBooks, useTheme } from '../contexts';
 import { ThemeSelect } from './ThemeSelect';
 import { NewBookForm } from './NewBookForm';
 
 export const Navbar = () => {
-  const { books } = useContext(BooksContext);
+  const [books] = useBooks();
   const [theme, setTheme] = useTheme();
 
   return (
