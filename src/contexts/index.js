@@ -1,2 +1,2 @@
 export * from './BooksContext';
-export * from './ThemeContext';
+export * from './theme-context';
