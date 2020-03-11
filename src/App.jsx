@@ -1,18 +1,16 @@
-import React, { useState, useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
-import { Book } from './models';
-import { Theme } from './constants';
+import React, { useState, useReducer, useEffect } from 'react';
+import { Theme, LocalStorageItemKey } from './constants';
 import { BooksContext, ThemeContext } from './contexts';
 import { Navbar, BookList } from './components';
 import { booksReducer } from './reducers';
 
 export const App = () => {
   const [theme, setTheme] = useState(Theme.light);
+  const [books, dispatch] = useReducer(booksReducer, [], booksInitializer);
 
-  const [books, dispatch] = useReducer(booksReducer, [
-    new Book('Foundation', 'Isaac Asimov', uuid()),
-    new Book('The Martian', 'Andy Weir', uuid()),
-  ]);
+  useEffect(() => {
+    saveItemToLocalStorage(LocalStorageItemKey.books, books);
+  }, [books])
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -24,4 +22,19 @@ export const App = () => {
       </BooksContext.Provider>
     </ThemeContext.Provider>
   );
+}
+
+const booksInitializer = (initialValue) => {
+  const storedBooks = getItemFromLocalStorage(LocalStorageItemKey.books);
+  return storedBooks === null ? initialValue : storedBooks;
+};
+
+// TODO move to utils file
+
+const getItemFromLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+const saveItemToLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value))
 }
