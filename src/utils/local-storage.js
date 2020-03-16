@@ -8,22 +8,22 @@ function setLocalStorageValue(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function useLocalStorage(key, initialValue) {
-  const [value, setValue] = useState(() => {
-    const existingValue = getLocalStorageValue(key);
-    if (existingValue === null) {
-      setLocalStorageValue(key, initialValue);
-      return initialValue;
+function useLocallyStoredState(key, initialState) {
+  const [state, setState] = useState(() => {
+    const existingState = getLocalStorageValue(key);
+    if (existingState === null) {
+      setLocalStorageValue(key, initialState);
+      return initialState;
     } else {
-      return existingValue;
+      return existingState;
     }
   });
 
   useEffect(() => {
-    setLocalStorageValue(key, value);
-  }, [value, key])
+    setLocalStorageValue(key, state);
+  }, [state, key])
 
-  return [value, setValue];
+  return [state, setState];
 }
 
-export { useLocalStorage }
+export { useLocallyStoredState }
