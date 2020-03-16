@@ -1,18 +1,13 @@
 import React, { createContext, useReducer, useEffect, useContext } from 'react';
 import { LocalStorageItemKey } from '../constants'
 import { booksReducer } from '../reducers'
-import { useLocallyStoredState } from '../utils/local-storage'
+import { useLocallyStoredReducer } from '../utils/local-storage'
 
 const BooksContext = createContext();
 BooksContext.displayName = 'BooksContext';
 
 function BooksProvider({ children }) {
-  const [localBooks, setLocalBooks] = useLocallyStoredState(LocalStorageItemKey.books, []);
-  const [books, dispatch] = useReducer(booksReducer, localBooks);
-
-  useEffect(() => {
-    setLocalBooks(books);
-  }, [books, setLocalBooks])
+  const [books, dispatch] = useLocallyStoredReducer(LocalStorageItemKey.books, booksReducer, []);
 
   return (
     <BooksContext.Provider value={[books, dispatch]} >
