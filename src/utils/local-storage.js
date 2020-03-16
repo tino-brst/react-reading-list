@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from 'react';
 
 function getLocalStorageValue(key) {
   return JSON.parse(localStorage.getItem(key));
@@ -9,21 +9,15 @@ function setLocalStorageValue(key, value) {
 }
 
 function useLocallyStoredState(key, initialState) {
-  const [state, setState] = useState(() => {
-    const existingState = getLocalStorageValue(key);
-    if (existingState === null) {
-      setLocalStorageValue(key, initialState);
-      return initialState;
-    } else {
-      return existingState;
-    }
-  });
+  // A reducer that returns whatever action it receives, replacing the previous state
+  // with the actions value (which becomes the new state).
+  const reducer = (_, newState) => newState;
 
-  useEffect(() => {
-    setLocalStorageValue(key, state);
-  }, [state, key])
-
-  return [state, setState];
+  // The returned dispatch function passes whatever we send it through our reducer, working
+  // just like the classic setState function, which replaces the current state with the value passed.
+  // So: dispatch(action) calls reducer(prevState, action), which returns the action and
+  // becomes the new state.
+  return useLocallyStoredReducer(key, reducer, initialState);
 }
 
 function useLocallyStoredReducer(key, reducer, initialState) {
