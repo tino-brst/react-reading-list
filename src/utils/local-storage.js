@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 
 function getLocalStorageValue(key) {
   return JSON.parse(localStorage.getItem(key));
@@ -26,4 +26,25 @@ function useLocallyStoredState(key, initialState) {
   return [state, setState];
 }
 
-export { useLocallyStoredState }
+function useLocallyStoredReducer(key, reducer, initialState) {
+  const [state, dispatch] = useReducer(reducer, initialState, (initialState) => {
+    const existingState = getLocalStorageValue(key);
+    if (existingState === null) {
+      setLocalStorageValue(key, initialState);
+      return initialState;
+    } else {
+      return existingState;
+    }
+  });
+
+  useEffect(() => {
+    setLocalStorageValue(key, state);
+  }, [state, key])
+
+  return [state, dispatch];
+}
+
+export {
+  useLocallyStoredState,
+  useLocallyStoredReducer
+}
