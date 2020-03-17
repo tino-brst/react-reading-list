@@ -1,12 +1,12 @@
-import React from 'react';
-import { useBooks } from '../contexts';
-import { BookListTile } from './BookListTile';
-import { BooksActionCreator } from '../actions';
+import React from 'react'
+import { useBooks } from '../contexts'
+import { BookListTile } from './BookListTile'
+import { BooksActionCreator } from '../actions'
 
 // TODO add an empty state
 
 export function BookList() {
-  const [books, dispatch] = useBooks();
+  const [books, dispatch] = useBooks()
 
   function removeBook(id) {
     dispatch(BooksActionCreator.remove(id))
@@ -24,5 +24,5 @@ export function BookList() {
         ))}
       </ul>
     </div>
-  );
+  )
 }

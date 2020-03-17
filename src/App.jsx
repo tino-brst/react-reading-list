@@ -1,6 +1,6 @@
-import React from 'react';
-import { BooksProvider } from './contexts';
-import { Navbar, BookList } from './components';
+import React from 'react'
+import { BooksProvider } from './contexts'
+import { Navbar, BookList } from './components'
 
 export function App() {
   return (
@@ -10,5 +10,5 @@ export function App() {
         <BookList />
       </BooksProvider>
     </div>
-  );
+  )
 }

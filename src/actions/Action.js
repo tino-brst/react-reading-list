@@ -1,9 +1,9 @@
 export class Action {
-  type;
-  payload;
+  type
+  payload
 
   constructor(type, payload) {
-    this.type = type;
-    this.payload = payload;
+    this.type = type
+    this.payload = payload
   }
 }

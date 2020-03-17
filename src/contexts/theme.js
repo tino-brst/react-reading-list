@@ -1,11 +1,11 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from 'react'
 import { Theme } from '../constants'
 
-const ThemeContext = createContext();
-ThemeContext.displayName = 'ThemeContext';
+const ThemeContext = createContext()
+ThemeContext.displayName = 'ThemeContext'
 
 function ThemeProvider({ children, initialValue = Theme.light }) {
-  const [theme, setTheme] = useState(initialValue);
+  const [theme, setTheme] = useState(initialValue)
 
   return (
     <ThemeContext.Provider value={[theme, setTheme]}>
@@ -15,14 +15,11 @@ function ThemeProvider({ children, initialValue = Theme.light }) {
 }
 
 function useTheme() {
-  const context = useContext(ThemeContext);
+  const context = useContext(ThemeContext)
   if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider')
   }
-  return context;
+  return context
 }
 
-export {
-  ThemeProvider,
-  useTheme
-};
+export { ThemeProvider, useTheme }

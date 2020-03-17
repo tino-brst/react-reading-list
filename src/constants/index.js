@@ -1,14 +1,11 @@
 const Theme = Object.freeze({
   light: 'light',
   dark: 'dark',
-  sepia: 'sepia'
+  sepia: 'sepia',
 })
 
 const LocalStorageItemKey = Object.freeze({
-  books: 'books'
+  books: 'books',
 })
 
-export {
-  Theme,
-  LocalStorageItemKey
-}
+export { Theme, LocalStorageItemKey }

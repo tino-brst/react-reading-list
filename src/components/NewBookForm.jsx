@@ -1,35 +1,32 @@
-import React, { useState } from 'react';
-import { useBooks } from '../contexts';
-import { BooksActionCreator } from '../actions';
+import React, { useState } from 'react'
+import { useBooks } from '../contexts'
+import { BooksActionCreator } from '../actions'
 
 export function NewBookForm() {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
 
-  const [, dispatch] = useBooks();
+  const [, dispatch] = useBooks()
 
   function addBook(title, author) {
-    dispatch(BooksActionCreator.add(title, author));
+    dispatch(BooksActionCreator.add(title, author))
   }
 
   function clearFields() {
-    setTitle('');
-    setAuthor('');
+    setTitle('')
+    setAuthor('')
   }
 
   function onSubmit(event) {
-    event.preventDefault();
-    addBook(title, author);
-    clearFields();
+    event.preventDefault()
+    addBook(title, author)
+    clearFields()
   }
 
-  const isFormDataValid = title.trim() !== '' && author.trim() !== '';
+  const isFormDataValid = title.trim() !== '' && author.trim() !== ''
 
   return (
-    <form
-      className="NewBookForm"
-      onSubmit={onSubmit}
-    >
+    <form className="NewBookForm" onSubmit={onSubmit}>
       <fieldset>
         <legend>New Book</legend>
         <input
@@ -44,12 +41,8 @@ export function NewBookForm() {
           placeholder="author"
           onChange={(event) => setAuthor(event.target.value)}
         />
-        <input
-          type="submit"
-          disabled={!isFormDataValid}
-          value="+ add"
-        />
+        <input type="submit" disabled={!isFormDataValid} value="+ add" />
       </fieldset>
     </form>
-  );
+  )
 }
