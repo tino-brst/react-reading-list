@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "prettier": "1.19.1"
   },
   "prettier": {
@@ -47,8 +48,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format:check",
+      "pre-commit": "lint-staged",
       "pre-push": "npm test"
     }
+  },
+  "lint-staged": {
+    "*": "npm run format:check"
   }
 }
