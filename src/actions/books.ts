@@ -5,11 +5,11 @@ const BooksActionType = Object.freeze({
   remove: 'books/REMOVE',
 })
 
-function add(title, author) {
+function add(title: string, author: string) {
   return new Action(BooksActionType.add, { title, author })
 }
 
-function remove(id) {
+function remove(id: string) {
   return new Action(BooksActionType.remove, { id })
 }
 
