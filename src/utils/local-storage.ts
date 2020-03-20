@@ -1,10 +1,16 @@
 import React, { useEffect, useReducer, useState } from 'react'
 
-// TODO add optional initialValue to set in case of not found, refactor hooks
-function getLocalStorageValue(key: string) {
-  const rawValue = localStorage.getItem(key)
-  if (rawValue !== null) return JSON.parse(rawValue)
-  return null
+function getLocalStorageValue(key: string, initialValue?: any) {
+  const existingRawValue = localStorage.getItem(key)
+
+  if (existingRawValue !== null) {
+    return JSON.parse(existingRawValue)
+  } else if (initialValue !== undefined) {
+    setLocalStorageValue(key, initialValue)
+    return initialValue
+  } else {
+    return null
+  }
 }
 
 function setLocalStorageValue(key: string, value: any) {
@@ -12,15 +18,9 @@ function setLocalStorageValue(key: string, value: any) {
 }
 
 function useLocallyStoredState<I>(key: string, initialState: I) {
-  const [state, setState] = useState<I>(() => {
-    const existingState = getLocalStorageValue(key)
-    if (existingState === null) {
-      setLocalStorageValue(key, initialState)
-      return initialState
-    } else {
-      return existingState
-    }
-  })
+  const [state, setState] = useState<I>(() =>
+    getLocalStorageValue(key, initialState),
+  )
 
   useEffect(() => {
     setLocalStorageValue(key, state)
@@ -37,15 +37,7 @@ function useLocallyStoredReducer<R extends React.Reducer<any, any>, I>(
   const [state, dispatch] = useReducer<R, I>(
     reducer,
     initialState,
-    (initialState) => {
-      const existingState = getLocalStorageValue(key)
-      if (existingState === null) {
-        setLocalStorageValue(key, initialState)
-        return initialState
-      } else {
-        return existingState
-      }
-    },
+    (initialState) => getLocalStorageValue(key, initialState),
   )
 
   useEffect(() => {
