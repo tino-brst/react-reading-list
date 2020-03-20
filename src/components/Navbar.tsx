@@ -9,10 +9,7 @@ export function Navbar() {
 
   return (
     <nav className="Navbar">
-      <ThemeSelect
-        value={theme}
-        onChange={(event) => setTheme(event.target.value)}
-      />
+      <ThemeSelect value={theme} onChange={setTheme} />
       <h1>My Reading List</h1>
       <h3>{books.length} books to go</h3>
       <NewBookForm />

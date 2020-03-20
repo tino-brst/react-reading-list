@@ -12,3 +12,5 @@ export function App() {
     </div>
   )
 }
+
+// TODO move exports to the bottom (when possible, looks cleaner?)

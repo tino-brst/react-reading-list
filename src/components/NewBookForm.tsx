@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useBooks } from '../contexts'
-import { BooksActionCreator } from '../actions'
+import { addBook } from '../actions'
 
 export function NewBookForm() {
   const [title, setTitle] = useState('')
@@ -8,18 +8,14 @@ export function NewBookForm() {
 
   const [, dispatch] = useBooks()
 
-  function addBook(title, author) {
-    dispatch(BooksActionCreator.add(title, author))
-  }
-
   function clearFields() {
     setTitle('')
     setAuthor('')
   }
 
-  function onSubmit(event) {
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    addBook(title, author)
+    dispatch(addBook(title, author))
     clearFields()
   }
 

@@ -1,10 +1,19 @@
 import React, { createContext, useState, useContext } from 'react'
 import { Theme } from '../constants'
 
-const ThemeContext = createContext()
+type ThemeContextValue =
+  | [Theme, React.Dispatch<React.SetStateAction<Theme>>]
+  | undefined
+
+const ThemeContext = createContext<ThemeContextValue>(undefined)
 ThemeContext.displayName = 'ThemeContext'
 
-function ThemeProvider({ children, initialValue = Theme.light }) {
+type Props = {
+  children: React.ReactNode
+  initialValue?: Theme
+}
+
+function ThemeProvider({ children, initialValue = Theme.light }: Props) {
   const [theme, setTheme] = useState(initialValue)
 
   return (
