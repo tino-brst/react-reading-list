@@ -1,4 +1,4 @@
-import { Action } from './action'
+import { Action } from '../utils/actions'
 
 export enum BooksActionType {
   add = 'books/ADD',
